@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="login_result.jsp" method="post">
+<h1>미니 실습 로그인 화면 접근 서블릿으로 해보기</h1>
+<form action="/login/result" method="post">
     <input type="text" name="username">
     <input type="password" name="password">
     <button type="submit">전송</button>

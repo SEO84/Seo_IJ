@@ -16,7 +16,7 @@ import java.io.IOException;
 // 변경 전 : 결과 화면 페이지에 직접 접근.
 // 변경 후 : 서블릿(자바파일) 경유해서, 결과 화면으로 이동함.
 @WebServlet(name = "calcResultController", urlPatterns = "/calc/result")
-public class calcResultController extends HttpServlet {
+public class CalcResultController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

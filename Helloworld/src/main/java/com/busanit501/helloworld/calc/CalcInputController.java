@@ -16,7 +16,7 @@ import java.io.IOException;
 // 웹 브라우저에서, 주소 : http://localhost:8080/calc/input 입력
 // 이 파일이 응답 -> 입력 화면으로 전달 해주는 역할.
 // 그래서, 앞에 화면에 직접 접근 하는게 아니라, 서블릿을 통해서 접근을 함.
-public class calcInputController extends HttpServlet {
+public class CalcInputController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
