@@ -15,5 +15,7 @@
 <%--    다른 프론트 엔진인 타임리프를 사용할 경우에도 형식 많이 이용됨.--%>
     <h1>넘어온 데이터 확인 num1 : ${param.num1}</h1>
     <h1>넘어온 데이터 확인 num2 : ${param.num2}</h1>
+    <h1>넘어온 데이터 확인 num1 + num2 : ${Integer.parseInt(param.num1) + Integer.parseInt(param.num2)}</h1>
+
 </body>
 </html>
