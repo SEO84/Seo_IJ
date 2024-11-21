@@ -27,12 +27,33 @@ ${list[0]}
 
 
   <h2>JSTL 연습장</h2>
-<h3>반복문, forEach 이용, var=변수명, items="데이터 목록"</h3>
+<h3>반복문, forEach 이용, var=변수명, items="데이터 목록" , 더 많이 사용함</h3>
   <ul>
     <c:forEach var="dto" items="${list}">
       <li>${dto}</li>
     </c:forEach>
   </ul>
+
+  <h3>반복문, forEach 이용, var=변수명, items="데이터 목록",
+  begin, end 이용해보기. </h3>
+  <ul>
+    <c:forEach var="dto" items="${list}" begin="1" end="5">
+      <li>${dto}</li>
+    </c:forEach>
+  </ul>
+
+<h3> if, choose 조건문 확인 해보기. </h3>
+  <ul>
+    <c:forEach var="dto" items="${list}">
+      <c:if test="${dto.tno} % 2 == 0">
+        짝수 , ${dto}
+      </c:if>
+      <c:if test="${dto.tno} % 2 != 0">
+        홀수, ${dto}
+      </c:if>
+    </c:forEach>
+  </ul>
+
 
 
 </body>
