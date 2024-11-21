@@ -1,11 +1,12 @@
 package com.busanit501.helloworld.todo.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class TodoDTO {
     private Long tno;
     private String title;
-    private Date dueDate;
+    private LocalDate dueDate;
     private boolean finished;
 
     // 게터/세터/toString, 재정의.
@@ -19,7 +20,7 @@ public class TodoDTO {
         return title;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
@@ -35,7 +36,7 @@ public class TodoDTO {
         this.title = title;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
