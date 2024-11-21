@@ -26,6 +26,13 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    //jstl 추가,
+    // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl
+    // 구버전
+//    implementation 'javax.servlet.jsp.jstl:jstl:1.2'
+    implementation group: 'jstl', name: 'jstl', version: '1.2'
+
+
 }
 
 test {
