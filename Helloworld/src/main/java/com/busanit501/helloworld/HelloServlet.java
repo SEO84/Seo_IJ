@@ -6,7 +6,7 @@ import javax.servlet.annotation.*;
 
 // 서블릿 파일
 // 자바 파일. -> 컴파일 class -> 서버가 로드 메모리 올려서 사용함.
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
+@WebServlet(name = "helloServlet", value = "/hello")
 public class HelloServlet extends HttpServlet {
     private String message;
 
