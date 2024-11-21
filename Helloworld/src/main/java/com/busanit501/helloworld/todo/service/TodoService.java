@@ -47,6 +47,17 @@ public enum TodoService {
         return todoList;
     }
 
+    // 하나 조회, 상세보기 , 게시글에서, 게시글 번호 클릭시 나타나는 데이터
+    public TodoDTO getOne(Long tno) {
+        // 실제로, 디비에서 데이터 받아 와야 하지만,
+        // 더미 데이터 이용하기.
+        TodoDTO todoDTO = new TodoDTO();
+        todoDTO.setTno(5L);
+        todoDTO.setTitle("하나 조회 더미 데이터");
+        todoDTO.setDueDate(LocalDate.now());
+        return todoDTO;
+    }
+
 }
 
 
