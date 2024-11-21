@@ -25,20 +25,21 @@ public enum TodoService {
         // for 문으로 10개의 더미 인스턴스 만들었다.라고 생각하기.
         // 모양만 다름.
         // Stream 객체, 입력 , 출력 한번에 처리하는 기능을 인터페이스, 클래스,
-        List<TodoDTO> todoList2 = new ArrayList<>();
+//        List<TodoDTO> todoList2 = new ArrayList<>();
+//
+//        for (int i=0; i<10; i++) {
+//            TodoDTO todoDTO = new TodoDTO();
+//            todoDTO.setTitle("테스트BB " + i);
+//            todoDTO.setTno((long) i);
+//            todoDTO.setDueDate(LocalDate.now());
+//            todoList2.add(todoDTO);
+//        }
 
-        for (int i=0; i<10; i++) {
-            TodoDTO todoDTO = new TodoDTO();
-            todoDTO.setTitle("테스트 " + i);
-            todoDTO.setTno((long) i);
-            todoDTO.setDueDate(LocalDate.now());
-            todoList2.add(todoDTO);
-        }
         List<TodoDTO> todoList = IntStream.range(0,10).mapToObj(
                 i -> {
                     // 10 반복 해서, 더미 인스턴스 10개 생성,
                     TodoDTO todoDTO = new TodoDTO();
-                    todoDTO.setTitle("테스트 " + i);
+                    todoDTO.setTitle("테스트AA " + i);
                     todoDTO.setTno((long) i);
                     todoDTO.setDueDate(LocalDate.now());
                     return  todoDTO;
