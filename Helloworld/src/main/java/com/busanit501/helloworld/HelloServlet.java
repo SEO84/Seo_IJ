@@ -16,13 +16,17 @@ public class HelloServlet extends HttpServlet {
 
     // 서버가 시작시, 최초로 한번 실행.
     public void init() {
+        
+        // 생명주기 확인용, 콘솔 출력. 
+        // 최초 한번 실행됨. 
+        System.out.println("HelloServlet init...최초 1번 호출됨.");
         message = "Hello World!";
     }
 
     //  get 호출시 마다, 메서드가 호출.
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
-
+        System.out.println("HelloServlet doGet...호출시 마다 매번 호출됨.");
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
@@ -33,5 +37,6 @@ public class HelloServlet extends HttpServlet {
 
     // 서버가 종료시, 해당 객체를 반납하는 역할.
     public void destroy() {
+        System.out.println("HelloServlet destroy...소멸시 한번 호출됨.");
     }
 }
