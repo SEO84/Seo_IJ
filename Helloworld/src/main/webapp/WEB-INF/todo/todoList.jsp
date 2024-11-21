@@ -55,6 +55,20 @@ ${list[0]}
   </ul>
 
 
+<h3> choose 이용해서, if랑 else 효과 </h3>
+<ul>
+<c:forEach var="dto" items="${list}">
+  <c:choose>
+    <c:when test="${dto.tno % 2 == 0}">
+      <li> 짝수 , ${dto}</li>
+    </c:when>
+    <c:otherwise>
+      <li>홀수, ${dto}</li>
+    </c:otherwise>
+  </c:choose>
+  </c:forEach>
+</ul>
+
 
 </body>
 </html>
