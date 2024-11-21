@@ -45,11 +45,11 @@ ${list[0]}
 <h3> if, choose 조건문 확인 해보기. </h3>
   <ul>
     <c:forEach var="dto" items="${list}">
-      <c:if test="${dto.tno} % 2 == 0">
-        짝수 , ${dto}
+      <c:if test="${dto.tno % 2 == 0}">
+       <li> 짝수 , ${dto}</li>
       </c:if>
-      <c:if test="${dto.tno} % 2 != 0">
-        홀수, ${dto}
+      <c:if test="${dto.tno % 2 != 0} ">
+        <li>홀수, ${dto}</li>
       </c:if>
     </c:forEach>
   </ul>
