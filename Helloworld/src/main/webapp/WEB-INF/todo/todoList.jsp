@@ -15,6 +15,10 @@
 <body>
   <h1>todoList 목록화면. </h1>
     <a href="/todo/register">글쓰기 폼이동</a>
+  <h2>todoRead 하나 조회 더미 </h2>
+  <a href="/todo/read?tno=5">하나 조회</a>
+
+
 <h2>더미 데이터 단순 출력</h2>
   <h3>list 전체 중에서 호출, list[0]</h3>
 ${list[0]}
