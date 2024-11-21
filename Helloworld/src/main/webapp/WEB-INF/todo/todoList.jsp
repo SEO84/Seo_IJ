@@ -69,6 +69,10 @@ ${list[0]}
   </c:forEach>
 </ul>
 
+<h3>JSTL 변수 설정하고 사용하는 방법. </h3>
+<c:set var="username" value="test var"/>
+${username}
+
 
 </body>
 </html>
