@@ -19,7 +19,7 @@ public class LoginResultController extends HttpServlet {
         // 디비에서, 유저가 존재, 입력한 유저가, 디비에서 있는지 확인. 후
         // 메인 페이지 로 이동 리다이렉트.
         // 실패, 로그인 페이지 이동, 리다이렉트,
-
+        System.out.println("doPost,LoginResultController 서블릿을 경유해서, 로직처리합니다.");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
