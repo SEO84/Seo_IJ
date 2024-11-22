@@ -1,8 +1,11 @@
 package com.busanit501.helloworld.jdbcex.dao;
 
+import lombok.Cleanup;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class TodoDAO {
 
@@ -31,6 +34,19 @@ public class TodoDAO {
         } //catch
         return now;
     } //getTime
+
+    public String getTime2() throws SQLException {
+        String now = null;
+        // 자동으로 디비의 connection 반납하는 방법2
+        // @Cleanup
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        PreparedStatement preparedStatement =
+                connection.prepareStatement("select now()");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+        now = resultSet.getString(1);
+        return now;
+    }
 
 
 } //class

@@ -4,6 +4,8 @@ import com.busanit501.helloworld.jdbcex.dao.TodoDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
+
 public class TodoDAOTest {
     private TodoDAO todoDAO;
 
@@ -16,5 +18,11 @@ public class TodoDAOTest {
     @Test
     public void getTime() {
         System.out.println("sql 전달 후, 시간 조회 확인용: "+todoDAO.getTime());
+    }
+
+    @Test
+    public void getTime2() throws SQLException {
+        System.out.println("sql 전달 후, " +
+                "시간 조회 확인용: 자동 반납 @Cleanup 확인 "+todoDAO.getTime2());
     }
 }
