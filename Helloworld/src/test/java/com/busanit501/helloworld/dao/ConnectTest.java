@@ -23,7 +23,7 @@ public class ConnectTest {
 
         // Connection 인터페이스 이용해서, 디비 서버에 접근하는 준비물 준비.
          Connection con = DriverManager.getConnection
-                 ("jdbc:mysql://localhost:3306/webdb", "webuser", "webuser");
+                 ("jdbc:mariadb://localhost:3306/webdb", "webuser", "webuser");
          // 해당 인스턴스가 존재 하는지 유무 확인
         Assertions.assertNotNull(con);
 
