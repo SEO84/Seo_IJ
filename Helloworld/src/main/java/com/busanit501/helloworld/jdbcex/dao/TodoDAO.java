@@ -1,13 +1,28 @@
 package com.busanit501.helloworld.jdbcex.dao;
 
+import com.busanit501.helloworld.jdbcex.dto.TodoVO;
 import lombok.Cleanup;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class TodoDAO {
+
+    // Todo 등록기능, 추가하기.
+    // VO(Value Object, 실제 디비 컬럼과 일치함)
+    // 서비스 계층에서, VO 넘겨 받은 데이터 중에서, 보여줄 데이터만 따로 분리해서,
+    // 전달하는 용도로 사용하는 DTO 입니다.
+
+    public void insert(TodoVO todoVO) throws SQLException {
+
+        String sql = "insert into tbl_todo (title, dueDate, finished) " +
+                "values (?, ?, ?)";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, todoVO.getTitle());
+        preparedStatement.setDate(2, Date.valueOf(todoVO.getDueDate()));
+        preparedStatement.setBoolean(3, todoVO.isFinished());
+        preparedStatement.executeUpdate();
+    } //insert
 
     public String getTime() {
         String now = null;
