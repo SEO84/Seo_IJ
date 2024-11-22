@@ -15,3 +15,11 @@ DBCP, C3PO, 라이브러리, 커넥션 풀 관련 기능들,
 그중에서, HikariCP 라이브러리 이용해서,
 접근시 자원을 소모를 줄이겠다.
 재사용해서,
+자원 효율적으로 사용가능, 성능도 좋아짐.
+
+도구 이용하기 위해서, build.gradle 설치 후, 적용하기.
+
+  //Hikari Cp 설치
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
+
