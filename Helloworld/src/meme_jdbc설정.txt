@@ -26,6 +26,9 @@ delete from tbl_todo where tno > 5;
 웹 (jsp) 프로젝트 연결하기.
 
 1. build.gradle 파일안에
+// https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.5.1'
+
 해당 설치 경로 추가 하고, 새로고침 코끼리 클릭.
 
 2. jdbc 연결 구조.
