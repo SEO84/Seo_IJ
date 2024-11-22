@@ -1,0 +1,41 @@
+Lombok 라이브러리.
+: get/set/toString/equals/생성자/빌더 패턴. 등 반자동,
+도구를 미리 설치후, 메모리 상에서 띄워서 사용함.
+사용법은 @getter , 어노테이션만 붙이면, 바로 사용가능함.
+
+단점,
+특정 라이브러리에 종속(의존한다.)이 된다.
+
+
+설치,
+build.gradle 파일에서
+
+//롬복 라이브러리 설치
+    // https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+
+    // test, 단위 테스트에서도, 사용하기.
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+
+확인.
+예)
+@getter , 어노테이션만 붙이면, 바로 사용가능함.
+
+ //원래 우리가 인스턴스 생성 방법
+    //TodoVO Todo = new TodoVO();
+    TodoVO todoVO = new TodoVO();
+    todoVO.setTno(200L);
+    todoVO.setTitle("제목200");
+    todoVO.setDueDate(LocalDate.now());
+
+    System.out.println(todoVO);
+
+    TodoVO todo = TodoVO.builder()
+        .tno(100L)
+        .title("제목100")
+        .dueDate(LocalDate.now())
+        .build();
+
+    System.out.println(todo);
