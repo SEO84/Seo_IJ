@@ -48,6 +48,9 @@ dependencies {
     testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
 
+    //4
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '6.2.1'
 
 
 }

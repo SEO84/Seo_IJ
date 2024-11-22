@@ -1,0 +1,15 @@
+show databases;
+select now();
+create database webdb;
+use webdb;
+create table tbl_todo (
+                          tno int auto_increment primary key,
+                          title varchar(100) not null,
+                          dueDate date not null,
+                          finished tinyint default 0
+);
+insert into tbl_todo (title, dueDate, finished) values ('샘플1',now(),1);
+insert into tbl_todo (title, dueDate) values ('점심 뭐 먹지?국밥',now());
+select * from tbl_todo;
+commit;
+flush privileges ;
