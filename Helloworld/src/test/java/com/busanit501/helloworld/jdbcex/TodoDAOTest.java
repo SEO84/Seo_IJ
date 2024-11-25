@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class TodoDAOTest {
@@ -29,6 +30,7 @@ public class TodoDAOTest {
                 "시간 조회 확인용: 자동 반납 @Cleanup 확인 " + todoDAO.getTime2());
     }
 
+    // 1
     @Test
     public void insetTest() throws Exception {
         //원래 화면에서 데이터를 입력 받아 와서, 모델에 담고,
@@ -50,4 +52,13 @@ public class TodoDAOTest {
         todoDAO.insert(todoVO1);
 
     }
-}
+
+    //2, 전체 목록 조회 테스트
+    @Test
+    public void testList() throws SQLException {
+        List<TodoVO> list = todoDAO.selectAll();
+        list.forEach(vo -> System.out.println(vo));
+    }
+
+}// class
+
