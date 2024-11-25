@@ -60,5 +60,13 @@ public class TodoDAOTest {
         list.forEach(vo -> System.out.println(vo));
     }
 
+    //3, 하나 조회 테스트
+    @Test
+    public void getOneTest() throws SQLException {
+       Long tno = 3L;
+       TodoVO todoVO = todoDAO.selectOne(tno);
+       System.out.println(todoVO);
+    }
+
 }// class
 
