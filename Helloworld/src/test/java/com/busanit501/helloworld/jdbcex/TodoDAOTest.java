@@ -1,8 +1,7 @@
 package com.busanit501.helloworld.jdbcex;
 
 import com.busanit501.helloworld.jdbcex.dao.TodoDAO;
-import com.busanit501.helloworld.jdbcex.dto.TodoVO;
-import lombok.Builder;
+import com.busanit501.helloworld.jdbcex.vo.TodoVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

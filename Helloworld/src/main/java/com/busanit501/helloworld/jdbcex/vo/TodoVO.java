@@ -1,4 +1,4 @@
-package com.busanit501.helloworld.jdbcex.dto;
+package com.busanit501.helloworld.jdbcex.vo;
 
 import lombok.*;
 

@@ -2,8 +2,6 @@ package com.busanit501.helloworld.food;
 
 import com.busanit501.helloworld.food.dao.FoodDAO;
 import com.busanit501.helloworld.food.vo.FoodVO;
-import com.busanit501.helloworld.jdbcex.dao.TodoDAO;
-import com.busanit501.helloworld.jdbcex.dto.TodoVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +32,7 @@ public class FoodDAOTest {
     @Test
     public void insetTest() throws Exception {
         FoodVO foodVO = FoodVO.builder()
-                .title("샘플 데이터 추가1")
+                .title("샘플 데이터 추가1234")
                 .dueDate(LocalDate.now())
                 .finished(false)
                 .build();
