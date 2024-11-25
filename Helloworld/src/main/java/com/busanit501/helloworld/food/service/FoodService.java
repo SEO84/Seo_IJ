@@ -25,7 +25,7 @@ public enum FoodService {
                     // 10 반복 해서, 더미 인스턴스 10개 생성,
                     FoodDTO foodDTO = new FoodDTO();
                     foodDTO.setTitle("테스트AA " + i);
-                    foodDTO.setTno((long) i);
+                    foodDTO.setFno((long) i);
                     foodDTO.setDueDate(LocalDate.now());
                     return  foodDTO;
                 }).collect(Collectors.toList());
@@ -37,7 +37,7 @@ public enum FoodService {
         // 실제로, 디비에서 데이터 받아 와야 하지만,
         // 더미 데이터 이용하기.
         FoodDTO foodDTO = new FoodDTO();
-        foodDTO.setTno(5L);
+        foodDTO.setFno(5L);
         foodDTO.setTitle("하나 조회 더미 데이터");
         foodDTO.setDueDate(LocalDate.now());
         return foodDTO;

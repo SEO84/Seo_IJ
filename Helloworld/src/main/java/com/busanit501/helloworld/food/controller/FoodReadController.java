@@ -19,11 +19,11 @@ public class FoodReadController extends HttpServlet {
         System.out.println("doGet TodoReadController 하나 조회 예제");
 
         // 클릭한 게시글 번호를 가지고 와야함.
-        Long tno = Long.parseLong(request.getParameter("fno"));
-        System.out.println("tno = " + tno);
+        Long fno = Long.parseLong(request.getParameter("fno"));
+        System.out.println("fno = " + fno);
 
         // 서비스에서, 하나의 todo 더미 데이터를 조회 후,
-        FoodDTO foodDTO  = FoodService.INSTANCE.getOne(tno);
+        FoodDTO foodDTO  = FoodService.INSTANCE.getOne(fno);
 
         // 화면에 전달하기.
         request.setAttribute("dto",foodDTO);
