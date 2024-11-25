@@ -71,6 +71,25 @@ public class TodoDAO {
 
     // 수정.
     // update,
+    //  화면에서 낱개로 넘어온 데이터는 DTO 담아서 전달,
+    // 서비스 계층에서, DTO -> VO(Value Object) 데이터베이스 직접적인 연관있음.
+    // 예시, VO 클래스는 , 테이블과 컬럼과 동일.
+    // 예시2) ,DTO 화면( 출력에서 전달하고 싶은 데이터만 골라서 사용할수 있음. )
+    // 화면에서 받아옴, 테스트 , 더미 데이터 확인.
+    public void updateOne(TodoVO todoVO) throws SQLException {
+        String sql = " update tbl_todo set title=?, dueDate=?, finished=?" +
+                " where tno=?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        // 화면에서 넘겨받은 변경할 데이터를 DTO -> VO 변환 후에(서비스에서 할 예정.)
+        // VO 에서 꺼내서, 디비로 데이터 전달하는 과정.
+        preparedStatement.setString(1, todoVO.getTitle());
+        preparedStatement.setDate(2, Date.valueOf(todoVO.getDueDate()));
+        preparedStatement.setBoolean(3,todoVO.isFinished());
+        preparedStatement.setLong(4,todoVO.getTno());
+        preparedStatement.executeUpdate();
+
+    }
 
     //삭제,
     // delete,
@@ -82,6 +101,8 @@ public class TodoDAO {
         preparedStatement.executeUpdate();
 
     }
+
+
 
     /// /////////////////////////////////////////////////////////////////////////
     public String getTime() {

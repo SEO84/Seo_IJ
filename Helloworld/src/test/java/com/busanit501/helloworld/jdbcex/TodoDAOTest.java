@@ -73,7 +73,6 @@ public class TodoDAOTest {
     public void deleteTest() throws SQLException {
         Long tno = 4L;
         todoDAO.deleteTodo(tno);
-
     }
 
 }// class
