@@ -1,5 +1,6 @@
 package com.busanit501.helloworld.food;
 
+import com.busanit501.helloworld.food.dao.FoodDAO;
 import com.busanit501.helloworld.food.vo.FoodVO;
 import com.busanit501.helloworld.jdbcex.dao.TodoDAO;
 import com.busanit501.helloworld.jdbcex.dto.TodoVO;
@@ -11,23 +12,23 @@ import java.time.LocalDate;
 
 
 public class FoodDAOTest {
-    private TodoDAO todoDAO;
+    private FoodDAO foodDAO;
 
     // 아래에 각 단위 테스트가 실행되기전에, 먼저 실행을 함.
     @BeforeEach
     public void ready() {
-        todoDAO = new TodoDAO();
+        foodDAO = new FoodDAO();
     }
 
     @Test
     public void getTime() {
-        System.out.println("sql 전달 후, 시간 조회 확인용: " + todoDAO.getTime());
+        System.out.println("sql 전달 후, 시간 조회 확인용: " + foodDAO.getTime());
     }
 
     @Test
     public void getTime2() throws SQLException {
         System.out.println("sql 전달 후, " +
-                "시간 조회 확인용: 자동 반납 @Cleanup 확인 " + todoDAO.getTime2());
+                "시간 조회 확인용: 자동 반납 @Cleanup 확인 " + foodDAO.getTime2());
     }
 
     @Test
@@ -38,7 +39,7 @@ public class FoodDAOTest {
                 .finished(false)
                 .build();
 
-        todoDAO.insert(foodVO);
+        foodDAO.insert(foodVO);
 
     }
 }
