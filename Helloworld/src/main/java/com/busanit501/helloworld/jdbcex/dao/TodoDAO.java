@@ -49,6 +49,29 @@ public class TodoDAO {
         return  list;
     }
 
+    //3, 하나 조회. 상세보기.
+    public TodoVO selectOne(Long tno) throws SQLException {
+        String sql = "select * from tbl_todo where tno = ?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, tno);
+        // 하나만 받아온 상태,
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+        // 임시 TotoVO , 인스턴스 만들어서, 한행의 각 컬럼 4개를 담기.
+        TodoVO todoVO = TodoVO.builder()
+                //setTno
+                .tno(resultSet.getLong("tno"))
+                // setTitle
+                .title(resultSet.getString("title"))
+                //setDueDate
+                .dueDate(resultSet.getDate("dueDate").toLocalDate())
+                //setFinished
+                .finished(resultSet.getBoolean("finished"))
+                .build();
+
+        return todoVO;
+    }
+
     /// /////////////////////////////////////////////////////////////////////////
     public String getTime() {
         String now = null;
