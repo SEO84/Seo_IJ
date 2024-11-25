@@ -75,5 +75,21 @@ public class TodoDAOTest {
         todoDAO.deleteTodo(tno);
     }
 
+    // 4, 수정 테스트
+    @Test
+    public void updateTest() throws SQLException {
+        // 실제 작업은 내용을 화면에서 받아오는 대신,
+        // 하드 코딩으로 값을 더미로 테스트.
+        TodoVO todoVO = TodoVO.builder()
+                .tno(3L)
+                .title("수정 테스트 중")
+                .finished(true)
+                .dueDate(LocalDate.of(2024, 11, 25))
+                .build();
+
+        todoDAO.updateOne(todoVO);
+
+    }
+
 }// class
 
