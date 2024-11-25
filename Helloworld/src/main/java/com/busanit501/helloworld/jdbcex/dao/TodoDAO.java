@@ -46,7 +46,7 @@ public class TodoDAO {
                     .build();
             list.add(todoVO);
         }
-        return  list;
+        return list;
     }
 
     //3, 하나 조회. 상세보기.
@@ -58,17 +58,14 @@ public class TodoDAO {
         // 하나만 받아온 상태,
         @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
         // 임시 TotoVO , 인스턴스 만들어서, 한행의 각 컬럼 4개를 담기.
+        // 0행에서 -> 1행으로 조회를 해야하는데, 요게 누락됨.
+        resultSet.next();
         TodoVO todoVO = TodoVO.builder()
-                //setTno
                 .tno(resultSet.getLong("tno"))
-                // setTitle
                 .title(resultSet.getString("title"))
-                //setDueDate
                 .dueDate(resultSet.getDate("dueDate").toLocalDate())
-                //setFinished
                 .finished(resultSet.getBoolean("finished"))
                 .build();
-
         return todoVO;
     }
 
