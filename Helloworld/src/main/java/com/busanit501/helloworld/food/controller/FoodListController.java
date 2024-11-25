@@ -1,5 +1,7 @@
 package com.busanit501.helloworld.food.controller;
 
+import com.busanit501.helloworld.food.dto.FoodDTO;
+import com.busanit501.helloworld.food.service.FoodService;
 import com.busanit501.helloworld.todo.dto.TodoDTO;
 import com.busanit501.helloworld.todo.service.TodoService;
 
@@ -23,9 +25,9 @@ public class FoodListController extends HttpServlet {
         // 비지니스 로직 부분을 , 본인이 처리하지 않고, 서비스 계층에 위임을 함. 외주줌.
         // 서비스에서 데이터 처리를 받아서,
         // 본인 업무인 라우팅을 하는데, 데이터 같이 포함해서, 전달 했다.
-//        List<TodoDTO> todoList = TodoService.INSTANCE.getList();
+        List<FoodDTO> foodList = FoodService.INSTANCE.getList();
         // 화면에 전달하는 방법,
-//        request.setAttribute("list", todoList);
+        request.setAttribute("list", foodList);
 
         //방법1
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/todoList.jsp");

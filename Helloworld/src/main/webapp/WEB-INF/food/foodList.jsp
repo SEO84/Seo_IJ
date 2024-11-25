@@ -19,6 +19,10 @@
   <a href="/food/read?tno=5">하나 조회</a>
 
 <%--나중에 받을 데이터를 출력하는 작업 나중에--%>
-
+  <ul>
+    <c:forEach var="dto" items="${list}">
+      <li>${dto}</li>
+    </c:forEach>
+  </ul>
 </body>
 </html>
