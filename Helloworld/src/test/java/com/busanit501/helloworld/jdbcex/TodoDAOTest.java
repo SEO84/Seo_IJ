@@ -68,5 +68,13 @@ public class TodoDAOTest {
        System.out.println(todoVO);
     }
 
+    // 4, 삭제 테스트
+    @Test
+    public void deleteTest() throws SQLException {
+        Long tno = 4L;
+        todoDAO.deleteTodo(tno);
+
+    }
+
 }// class
 
