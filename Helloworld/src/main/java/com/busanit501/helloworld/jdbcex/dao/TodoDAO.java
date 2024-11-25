@@ -69,6 +69,20 @@ public class TodoDAO {
         return todoVO;
     }
 
+    // 수정.
+    // update,
+
+    //삭제,
+    // delete,
+    public void deleteTodo(Long tno) throws SQLException {
+        String sql = "delete from tbl_todo where tno =?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, tno);
+        preparedStatement.executeUpdate();
+
+    }
+
     /// /////////////////////////////////////////////////////////////////////////
     public String getTime() {
         String now = null;
