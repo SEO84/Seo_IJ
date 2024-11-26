@@ -13,6 +13,13 @@
 <body>
     <h1>jdbcex - todo의 글쓰기 폼 화면</h1>
 <form action="/todo/register2" method="post">
+    <div>
+        <input type="text" name="title" placeholder="제목 입력 해주세요.">
+    </div>
+    <div>
+        <input type="date" name="dueDate">
+    </div>
+    <button type="reset">초기화</button>
     <button type="submit">등록</button>
 </form>
 </body>
