@@ -27,7 +27,7 @@ public class TodoList2Controller extends HttpServlet {
         log.info("doGet TodoList2Controller 확인");
         try {
             // 서비스에 외주 주고, 전체 목록 리스트 받아오기.
-            List<TodoDTO> todoList = TodoService.INSTANCE.listAll();
+            List<TodoDTO> todoList = todoService.listAll();
             // 화면에 데이터 전달. + 화면에 데이터 탑재된 화면을 -> 웹브라우저에게 전달.
             request.setAttribute("list", todoList);
             request.getRequestDispatcher("/WEB-INF/todo/todoList2.jsp")
