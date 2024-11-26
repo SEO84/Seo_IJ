@@ -1,9 +1,10 @@
 package com.busanit501.helloworld.jdbcex.service;
 
 import com.busanit501.helloworld.jdbcex.dao.TodoDAO;
+import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.util.MapperUtil;
 import com.busanit501.helloworld.jdbcex.vo.TodoVO;
-import com.busanit501.helloworld.todo.dto.TodoDTO;
+
 import org.modelmapper.ModelMapper;
 
 import java.sql.SQLException;
