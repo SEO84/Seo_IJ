@@ -84,6 +84,19 @@ public enum TodoService {
         return dtoList;
     }
 
+    //3
+    // 하나 조회, 상세보기.
+    public TodoDTO get(Long tno) throws SQLException {
+        log.info("tno : " + tno);
+        ///  디비에서 하나 조회 결과 받았음.
+        TodoVO todoVO = todoDAO.selectOne(tno);
+        // VO -> DTO 변환 작업.
+         TodoDTO todoDTO = modelMapper.map(todoVO,TodoDTO.class);
+         return todoDTO;
+
+    }
+
+
 }
 
 
