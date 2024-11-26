@@ -58,7 +58,7 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.1'
 
     //6
-    // loggin 라이브러리,Log4j2,
+    // logging 라이브러리,Log4j2,
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
     implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '3.0.0-beta2'
 
