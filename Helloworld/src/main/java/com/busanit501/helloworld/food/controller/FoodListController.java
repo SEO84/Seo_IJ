@@ -21,7 +21,7 @@ public class FoodListController extends HttpServlet {
 
         // 서비스 계층을 이용해서, 디비 연결 하기 전,
         // 더미 데이터를 받아와서, 확인
-        System.out.println("doGet : FoodListController");
+        System.out.println("doGet : FoodListController 한글 테스트");
         // 비지니스 로직 부분을 , 본인이 처리하지 않고, 서비스 계층에 위임을 함. 외주줌.
         // 서비스에서 데이터 처리를 받아서,
         // 본인 업무인 라우팅을 하는데, 데이터 같이 포함해서, 전달 했다.
