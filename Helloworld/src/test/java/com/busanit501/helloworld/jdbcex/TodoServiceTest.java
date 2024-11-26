@@ -3,12 +3,15 @@ package com.busanit501.helloworld.jdbcex;
 import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.service.TodoService;
 
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
+@Log4j2
 public class TodoServiceTest {
     private TodoService todoService;
 
@@ -25,6 +28,14 @@ public class TodoServiceTest {
                 .dueDate(LocalDate.now())
                 .build();
         todoService.register(todoDTO);
+    }
+
+    @Test
+    public void testSelectAll() throws SQLException {
+         List<TodoDTO> dtoList = todoService.listAll();
+        for (TodoDTO todoDto:dtoList) {
+            log.info(todoDto);
+        }
     }
 
 }
