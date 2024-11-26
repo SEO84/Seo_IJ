@@ -24,7 +24,12 @@
 <h3>반복문, forEach 이용, var=변수명, items="데이터 목록" , 더 많이 사용함</h3>
   <ul>
     <c:forEach var="dto" items="${list}">
-      <li>${dto}</li>
+      <li>
+        <span>${dto.tno}</span>
+        <span><a href="/todo/read2?tno=${dto.tno}">${dto.title}</a></span>
+        <span>${dto.dueDate}</span>
+        <span>${dto.finished? "완료": "미완료"}</span>
+      </li>
     </c:forEach>
   </ul>
 
