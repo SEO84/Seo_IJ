@@ -9,6 +9,9 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 // 설정1
 @Log4j2
@@ -22,7 +25,7 @@ public enum TodoService {
     private ModelMapper modelMapper;
 
     // 생성자 이용해서, 초기화하기.
-    TodoService(){
+    TodoService() {
         todoDAO = new TodoDAO();
         modelMapper = MapperUtil.INSTANCE.get();
     }
@@ -35,7 +38,7 @@ public enum TodoService {
     //1
     // register
     // 화면에서 등록된 내용이 -> DTO 박스에 담아서-> 서비스 계층에 전달.
-    public void register (TodoDTO todoDTO) throws SQLException {
+    public void register(TodoDTO todoDTO) throws SQLException {
         // DAO 작업할 때, 디비에 직접적인 영향을 주는 객체,
         // VO, 실제 비지니스 로직에서만 사용함.
         // 서블릿 > DTO 전달 받고, -> DAO 한테 전달할 때, 다시, VO 변환해야함.
@@ -48,13 +51,43 @@ public enum TodoService {
 //        todoVO.setFinished(todoDTO.isFinished());
 
         // 모델 맵퍼 이용시.
-        TodoVO todoVO = modelMapper.map(todoDTO,TodoVO.class);
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
         // 기존 로깅 기록 출력
 //        System.out.println("todoVo : "+ todoVO);
-        log.info("todoVo : "+ todoVO);
+        log.info("todoVo : " + todoVO);
 
         // DAO 외주 맡기기,
         todoDAO.insert(todoVO);
+    } // register
+
+    //2
+    // 전체 조회
+    public List<TodoDTO> listAll() throws SQLException {
+        List<TodoVO> voList = todoDAO.selectAll();
+        log.info("voList : " + voList);
+
+        // Stream 병렬 처리 안하면, 이런식으로 작업을 함.
+//        List<TodoDTO> dtoList2 = new ArrayList<>();
+//        for (TodoVO todoVo : voList) {
+//            TodoDTO todoDTO = new TodoDTO();
+//            todoDTO.setTno(todoVo.getTno());
+//            todoDTO.setTitle(todoVo.getTitle());
+//            todoDTO.setDueDate(todoVo.getDueDate());
+//            todoDTO.setFinished(todoVo.isFinished());
+//            dtoList2.add(todoDTO);
+//        }
+
+        // 병렬 처리를 하면, 똑같은 기능인데, 코드가 간결해짐.
+        // 화면에 전달 할 때, VO -> DTO 변환.
+        List<TodoDTO> dtoList = voList.stream().map(vo -> modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toList());
+        return dtoList;
     }
 
 }
+
+
+
+
+
+

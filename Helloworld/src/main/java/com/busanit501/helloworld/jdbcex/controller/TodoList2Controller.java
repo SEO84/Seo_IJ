@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Log4j2 // log.info("이런 형식으로 출력 한다.")
-@WebServlet(name = "TodoList2Controller",urlPatterns = "/todo/list2")
+@WebServlet(name = "TodoList2Controller", urlPatterns = "/todo/list2")
 public class TodoList2Controller extends HttpServlet {
     // 외주 일 시키기, 누구? 서비스 한테, 선언만,
     private TodoService todoService = TodoService.INSTANCE;
@@ -23,7 +23,7 @@ public class TodoList2Controller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //
-log.info("doGet TodoList2Controller 확인");
+        log.info("doGet TodoList2Controller 확인");
 //        List<TodoDTO> todoList = TodoService.INSTANCE.getList();
 //        request.setAttribute("list", todoList);
         request.getRequestDispatcher("/WEB-INF/todo/todoList2.jsp")
