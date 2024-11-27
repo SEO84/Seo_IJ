@@ -12,6 +12,7 @@
 </head>
 <body>
     <h1>jdbcex 작업 중. tno 번호로 수정화면 역할. </h1>
+    <form action="/todo/update?tno=${dto.tno}" method="post">
     <div>
         <input type="text" name="tno" value="${dto.tno}" readonly>
     </div>
@@ -25,8 +26,10 @@
         <input type="checkbox" name="finished" ${dto.finished ? "checked" : ""} >
     </div>
 <div>
-    <a href="/todo/update?tno=${dto.tno}">수정/삭제</a>
+    <button type="submit">수정하기</button>
+    <a href="/todo/delete?tno=${dto.tno}">삭제</a>
     <a href="/todo/list2">목록가기</a>
 </div>
+    </form>
 </body>
 </html>
