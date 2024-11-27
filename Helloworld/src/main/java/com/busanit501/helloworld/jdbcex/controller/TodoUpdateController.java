@@ -2,6 +2,7 @@ package com.busanit501.helloworld.jdbcex.controller;
 
 import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.service.TodoService;
+import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
+@Log4j2
 @WebServlet(name = "TodoUpdateController",urlPatterns = "/todo/update")
 public class TodoUpdateController extends HttpServlet {
     // 서비스를 포함 하기. 의존하기.
@@ -45,9 +46,18 @@ public class TodoUpdateController extends HttpServlet {
         // POST 처리 후, Redirect , Get 호출,
         // 무한 post 방지 효과, 화면 전환 효과.
         // 임시로 담을  DTO 인스턴스 필요함.
+
+        // 넘어온 값의 형태 : 문자열 : "on"
+        String finished = request.getParameter("finished");
+        log.info("finished : " + finished);
+        boolean checkFinished = false;
+        if(finished.equals("on")){
+            checkFinished = true;
+        }
         TodoDTO todoDTO = TodoDTO.builder()
                 .title(request.getParameter("title"))
                 .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
+                .finished(checkFinished)
                 .build();
         // Controller -> Service
         try {

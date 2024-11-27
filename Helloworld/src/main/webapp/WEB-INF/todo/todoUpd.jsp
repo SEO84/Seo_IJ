@@ -27,6 +27,7 @@
     </div>
 <div>
     <button type="submit">수정하기</button>
+    <br>
     <a href="/todo/delete?tno=${dto.tno}">삭제</a>
     <a href="/todo/list2">목록가기</a>
 </div>
