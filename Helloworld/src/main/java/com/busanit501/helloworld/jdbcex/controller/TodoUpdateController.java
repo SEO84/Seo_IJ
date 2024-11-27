@@ -55,6 +55,7 @@ public class TodoUpdateController extends HttpServlet {
             checkFinished = true;
         }
         TodoDTO todoDTO = TodoDTO.builder()
+                .tno(Long.valueOf(request.getParameter("tno")))
                 .title(request.getParameter("title"))
                 .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
                 .finished(checkFinished)
