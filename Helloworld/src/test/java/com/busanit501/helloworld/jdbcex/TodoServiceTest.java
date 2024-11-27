@@ -60,8 +60,11 @@ public class TodoServiceTest {
                 .build();
 
         todoService.update(todoDTO);
-
-
     }
 
+    // 하나삭제,
+    @Test
+    public void testDelteOne() throws SQLException {
+    todoService.delete(18L);
+    }
 }

@@ -108,7 +108,9 @@ public enum TodoService {
     }
 
     //5 삭제 기능.
-
+    public void delete(Long tno) throws SQLException {
+        todoDAO.deleteTodo(tno);
+    }
 
 }
 
