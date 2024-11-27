@@ -57,9 +57,16 @@ public enum FoodService {
         return foodDTO;
 
     }
+    //4 수정 기능
+    public void update(FoodDTO foodDTO) throws SQLException {
+
+        log.info("foodDTO : " + foodDTO);
+        FoodVO foodVO = modelMapper.map(foodDTO, FoodVO.class);
+        foodDAO.updateOne(foodVO);
+
+    }
+
+
 
 }
 
-
-// 예시, TodoService.INSTANCe
-// private final String str = "test";

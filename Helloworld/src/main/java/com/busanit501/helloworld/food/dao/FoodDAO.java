@@ -65,6 +65,20 @@ public class FoodDAO {
         return foodVO;
     }
 
+    public void updateOne(FoodVO foodVO) throws SQLException {
+        String sql = " update tbl_food set title=?, dueDate=?, finished=?" +
+                " where fno=?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setString(1, foodVO.getTitle());
+        preparedStatement.setDate(2, Date.valueOf(foodVO.getDueDate()));
+        preparedStatement.setBoolean(3,foodVO.isFinished());
+        preparedStatement.setLong(4,foodVO.getFno());
+        preparedStatement.executeUpdate();
+
+    }
+
 
 
 } //class

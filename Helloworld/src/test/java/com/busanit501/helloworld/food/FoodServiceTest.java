@@ -48,6 +48,19 @@ public class FoodServiceTest {
         FoodDTO foodDTO = foodService.get(9L);
         log.info("하나 조회. foodDTO " + foodDTO);
     }
+    // 하나수정,
+    @Test
+    public void testUpdateOne() throws SQLException {
+        //
+        FoodDTO foodDTO = FoodDTO.builder()
+                .fno(3L)
+                .title("수정된 내용입니다.7777777777777777777777")
+                .dueDate(LocalDate.now())
+                .finished(false)
+                .build();
+
+        foodService.update(foodDTO);
+    }
 
 
 }

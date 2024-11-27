@@ -48,5 +48,20 @@ public class FoodDAOTest {
         log.info(foodVO);
     }
 
+    // 4, 수정 테스트
+    @Test
+    public void updateTest() throws SQLException {
+        // 실제 작업은 내용을 화면에서 받아오는 대신,
+        // 하드 코딩으로 값을 더미로 테스트.
+        FoodVO foodVO = FoodVO.builder()
+                .fno(3L)
+                .title("수정 테스트 중222222222")
+                .finished(true)
+                .dueDate(LocalDate.of(2024, 11, 25))
+                .build();
+
+        foodDAO.updateOne(foodVO);
+
+    }
 
 }
