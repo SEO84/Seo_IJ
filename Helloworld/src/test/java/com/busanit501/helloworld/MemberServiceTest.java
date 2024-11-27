@@ -1,4 +1,4 @@
-package com.busanit501.helloworld.member;
+package com.busanit501.helloworld;
 
 import com.busanit501.helloworld.member.dto.MemberDTO;
 import com.busanit501.helloworld.member.service.MemberService;
