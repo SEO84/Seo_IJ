@@ -79,6 +79,16 @@ public class FoodDAO {
 
     }
 
+    //삭제,
+    // delete,
+    public void deleteFood(Long fno) throws SQLException {
+        String sql = "delete from tbl_food where fno =?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, fno);
+        preparedStatement.executeUpdate();
+    }
+
 
 
 } //class

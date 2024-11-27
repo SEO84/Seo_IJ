@@ -61,6 +61,10 @@ public class FoodServiceTest {
 
         foodService.update(foodDTO);
     }
-
+    // 하나삭제,
+    @Test
+    public void testDelteOne() throws SQLException {
+        foodService.delete(4L);
+    }
 
 }

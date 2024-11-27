@@ -66,6 +66,10 @@ public enum FoodService {
 
     }
 
+    //5 삭제 기능.
+    public void delete(Long fno) throws SQLException {
+        foodDAO.deleteFood(fno);
+    }
 
 
 }

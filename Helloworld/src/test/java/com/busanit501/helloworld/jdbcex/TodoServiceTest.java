@@ -65,6 +65,6 @@ public class TodoServiceTest {
     // 하나삭제,
     @Test
     public void testDelteOne() throws SQLException {
-    todoService.delete(18L);
+        todoService.delete(18L);
     }
 }

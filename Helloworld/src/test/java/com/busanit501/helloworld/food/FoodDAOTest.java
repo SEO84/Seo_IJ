@@ -64,4 +64,11 @@ public class FoodDAOTest {
 
     }
 
+    // 5, 삭제 테스트
+    @Test
+    public void deleteTest() throws SQLException {
+        Long fno = 3L;
+        foodDAO.deleteFood(fno);
+    }
+
 }

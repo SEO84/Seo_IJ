@@ -1,0 +1,130 @@
+세션
+서버에서 저장하는 임시 메모리.(0x100 스토리)
+톰캣 서버(WAS(Web application Server)= 웹서버 + jsp 컨테이너 )
+- extend HttpServletRequest ,
+- 부모의 클래스 중에서, 세션의 정보를 가져오는 기능,
+getSession()
+
+- 세션을 이용해서, 로그인 체크 기능 확인해보기.
+1) 사용자 로그인 성공시 -> HttpSession 에 임시 저장공간에 할당. -> 리스트로 가기.
+2) 실패시 -> 로그인 폼.
+
+기본문법.
+세터,
+ HttpSession session = req.getSession();
+    //세션의 정보를 저장.문자열의 형태.
+    session.setAttribute("loginInfo",result);
+
+게터,
+HttpSession session = req.getSession();
+session.getAttribute("loginInfo") 의 반환 값, Object 라서, 다운 캐스팅 필요함.
+    String loginInfoSession = (String) session.getAttribute("loginInfo");
+
+
+웹서버, 무상태(무언가 저장 안함),
+(클라이어트, 서버) 한세트
+(요청, 응답) 한세트,
+
+웹, 임시로 저장할 일이 발생함.
+1) 장기적으로 저장할 데이터, 디비 서버 보관,
+2) 사이트 , 로그인, 로그인 정보를 임시로 저장할 공간. -> 서버의 임시 메모리에 저장. -> 세션
+초반에는, SSR(Server Side Rendering) -> 대용량
+-> CSR(리액트, 뷰, API 서버(화면 안그리고, 데이터만 전달.)
+단점, 휘발성, 서버의 자원을 계속 이용해요.
+3) 특정 사이트 에 접속 했을 때, 쿠키 정보 허용 해도 되냐고 ?
+정보가 노출이 되어도, 상관없는 임시 데이터,
+쇼핑몰에서
+
+
+참고,
+OSI 7계층.
+물리,데이터링크,네트워크,전송,세션,표현,응용
+
+쿠키
+문자열 형태로, key, value 의 형태로 데이터를 저장.
+클라이언트 저장하는 파일.
+
+쿠키를 생성하는 방법,
+1) 서버에서 자동으로 생성하는 쿠키 :
+키: JSSESSIONID 이름으로, 값 : F994A31D7351DDE3862876D0B64C7040
+경로 : /
+
+2) 개발자가 임의로 생성하는 쿠키 :
+- 이름도 자유롭게 정함.
+- 유효기간도 임의로 저장 가능, -> 자동로그인,
+- 생성하면, 반드시 Response 객체에 담아서, 브라우저에 전달해야함.
+- 경로, 도메인을 지정가능.
+
+생성/전송 ,
+비교,
+시스템이 제공해주는 쿠기
+-  키명 :JSESSIONID, 값: 랜덤한 문자열로 구성. 톰캣서버에 최초로 접근시 발행해주는 값.
+- 유효기간 지정.
+- 메모리상에 보관,
+- 4kb
+vs
+사용자가 정의한 쿠키.
+- 개발자가 직접 정의 가능.
+- 파일로 보관,
+- 유효기관을 명시,
+- 쿠키 만들고, 전송해야함.
+- 4kb
+
+주의사항, 문자열 타입으로 저장,.
+쿠키에 내용에 값을 저장 할때, 한글 문제가되어서, URLEncoding, URLDecoding.
+test -> encoding -> 1234@@ , 인코딩
+test <- decoding <- 1234@@ , 디코딩
+
+-이용해서, 최근 조회한 상품의 내용 쿠키에 저장. .
+-이용해서, 최근 조회한 Todo의 내용 쿠키에 저장.
+
+-처리하는 전략, 예) 세션, (Session, Server
+1) 쿠키(Cookie)는 ,클라이언트에서 파일 형식으로 저장.
+2) 1-3-7, TodoVO의 tno 번호로 기록을 해보자.
+3) 쿠키의 이름 : 키, 값의 구조,  키: viewTodos, 값 : "1-4-7"
+4) 유효기간은 임시로 24시간,
+5)
+문법.
+쿠키 설정, 세터
+// 쿠키의 값을 설정, setter
+        viewTodoCookie.setValue(todoListResult);
+        // 쿠키 의 생존 주기, 하루.
+        viewTodoCookie.setMaxAge(60 * 60 * 24);
+        // 해당 쿠기의 적용 범위. /todo/list
+        viewTodoCookie.setPath("/");
+
+쿠키 전달,
+ // 응답 객체에 담아서, 전송.
+        resp.addCookie(viewTodoCookie);
+
+쿠키 값 가져오기
+private Cookie findCookie(Cookie[] cookies, String cookieName) {
+    // 찾은 쿠키를 담을 임시 쿠기.
+    Cookie targetCookie = null;
+
+    if(cookies != null && cookies.length >0) {
+      for(Cookie cookie : cookies) {
+        if(cookie.getName().equals(cookieName)){
+          targetCookie = cookie;
+          break;
+        }
+      }
+    } // if 조건문
+
+    if(targetCookie == null) {
+      targetCookie = new Cookie(cookieName,"");
+      targetCookie.setPath("/");
+      targetCookie.setMaxAge(60*60*24);
+
+    }
+    return targetCookie;
+  } // findCookie 닫는 부분
+
+
+필터
+반드시 거쳐감,
+시나리오, todo 접근시, 항상 로그인을 체크 하는 필터 만들기.
+
+
+리스너
+각 공간의 임시 저장소,
