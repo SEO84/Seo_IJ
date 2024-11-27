@@ -25,14 +25,14 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.info("LoginController doPost ");
         String mid = request.getParameter("mid");
-        String pwd = request.getParameter("pwd");
+        String mpw = request.getParameter("mpw");
 
         // 디비에가서, 해당 유저가 있으면, 임시로 세션에 저장,
         // 예외처리도 없음.
         // 조금있다 할 예정.
         // 임의로 세션 동작 여부만 확인중.
 
-        String tempInfo = mid+pwd;
+        String tempInfo = mid+mpw;
         // 세션에, 위의 로그인 정보를 저장,
         HttpSession session = request.getSession();
         session.setAttribute("loginInfo", tempInfo);
