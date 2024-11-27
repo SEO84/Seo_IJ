@@ -1,9 +1,6 @@
 package com.busanit501.helloworld.food.controller;
 
-import com.busanit501.helloworld.food.dto.FoodDTO;
-import com.busanit501.helloworld.food.service.FoodService;
-import com.busanit501.helloworld.todo.dto.TodoDTO;
-import com.busanit501.helloworld.todo.service.TodoService;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,17 +14,12 @@ import java.util.List;
 public class FoodListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //화면 전달.
 
-        // 서비스 계층을 이용해서, 디비 연결 하기 전,
-        // 더미 데이터를 받아와서, 확인
         System.out.println("doGet : FoodListController 한글 테스트");
-        // 비지니스 로직 부분을 , 본인이 처리하지 않고, 서비스 계층에 위임을 함. 외주줌.
-        // 서비스에서 데이터 처리를 받아서,
-        // 본인 업무인 라우팅을 하는데, 데이터 같이 포함해서, 전달 했다.
-        List<FoodDTO> foodList = FoodService.INSTANCE.getList();
+
+//        List<FoodDTO> foodList = FoodService.INSTANCE.getList();
         // 화면에 전달하는 방법,
-        request.setAttribute("list", foodList);
+//        request.setAttribute("list", foodList);
 
         //방법1
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/todo/todoList.jsp");
