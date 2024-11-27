@@ -48,4 +48,20 @@ public class TodoServiceTest {
         log.info("하나 조회. todoDTO " + todoDTO);
     }
 
+    // 하나수정,
+    @Test
+    public void testUpdateOne() throws SQLException {
+        //
+        TodoDTO todoDTO = TodoDTO.builder()
+                .tno(14L)
+                .title("수정된 내용입니다.")
+                .dueDate(LocalDate.now())
+                .finished(false)
+                .build();
+
+        todoService.update(todoDTO);
+
+
+    }
+
 }
