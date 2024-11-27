@@ -46,6 +46,18 @@ public enum FoodService {
         return dtoList;
     }
 
+    //3
+    // 하나 조회, 상세보기.
+    public FoodDTO get(Long fno) throws SQLException {
+        log.info("fno : " + fno);
+        ///  디비에서 하나 조회 결과 받았음.
+        FoodVO foodVO = foodDAO.selectOne(fno);
+        // VO -> DTO 변환 작업.
+        FoodDTO foodDTO = modelMapper.map(foodVO,FoodDTO.class);
+        return foodDTO;
+
+    }
+
 }
 
 

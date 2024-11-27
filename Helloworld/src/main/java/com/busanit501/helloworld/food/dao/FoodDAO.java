@@ -45,6 +45,26 @@ public class FoodDAO {
         return list;
     }
 
+    //3, 하나 조회. 상세보기.
+    public FoodVO selectOne(Long fno) throws SQLException {
+        String sql = "select * from tbl_food where fno = ?";
+        @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setLong(1, fno);
+        // 하나만 받아온 상태,
+        @Cleanup ResultSet resultSet = preparedStatement.executeQuery();
+        // 임시 TotoVO , 인스턴스 만들어서, 한행의 각 컬럼 4개를 담기.
+        // 0행에서 -> 1행으로 조회를 해야하는데, 요게 누락됨.
+        resultSet.next();
+        FoodVO foodVO = FoodVO.builder()
+                .fno(resultSet.getLong("fno"))
+                .title(resultSet.getString("title"))
+                .dueDate(resultSet.getDate("dueDate").toLocalDate())
+                .finished(resultSet.getBoolean("finished"))
+                .build();
+        return foodVO;
+    }
+
 
 
 } //class

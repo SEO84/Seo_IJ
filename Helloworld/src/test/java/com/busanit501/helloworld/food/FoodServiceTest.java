@@ -41,12 +41,13 @@ public class FoodServiceTest {
             log.info(foodDTO);
         }
     }
-//
-//    // 하나조회, 상세보기.
-//    @Test
-//    public void testSelectOne() throws SQLException {
-//        val todoDTO = todoService.get(14L);
-//        log.info("하나 조회. todoDTO " + todoDTO);
-//    }
+
+    // 하나조회, 상세보기.
+    @Test
+    public void testSelectOne() throws SQLException {
+        FoodDTO foodDTO = foodService.get(9L);
+        log.info("하나 조회. foodDTO " + foodDTO);
+    }
+
 
 }

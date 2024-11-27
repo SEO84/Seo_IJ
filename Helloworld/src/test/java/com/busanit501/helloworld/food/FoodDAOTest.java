@@ -3,6 +3,7 @@ package com.busanit501.helloworld.food;
 import com.busanit501.helloworld.food.dao.FoodDAO;
 import com.busanit501.helloworld.food.vo.FoodVO;
 import com.busanit501.helloworld.jdbcex.vo.TodoVO;
+import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-
+@Log4j2
 public class FoodDAOTest {
     private FoodDAO foodDAO;
 
@@ -37,6 +38,14 @@ public class FoodDAOTest {
     public void testList() throws SQLException {
         List<FoodVO> list = foodDAO.selectAll();
         list.forEach(vo -> System.out.println(vo));
+    }
+
+    //3, 하나 조회 테스트
+    @Test
+    public void getOneTest() throws SQLException {
+        Long fno = 9L;
+        FoodVO foodVO = foodDAO.selectOne(fno);
+        log.info(foodVO);
     }
 
 
