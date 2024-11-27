@@ -45,6 +45,10 @@ public class TodoList2Controller extends HttpServlet {
         }
         //임시로, 최초도 아니고, 로그인 처리가 되었다면, 그러면,
         // 정상적으로 접근하는 페이지로 이동 시켜 줄게.
+        if(session.getAttribute("loginInfo") != null) {
+          String result  = (String) session.getAttribute("loginInfo");
+            log.info("session.getAttribute(\"loginInfo\") result : " + result);
+        }
 
 
 
