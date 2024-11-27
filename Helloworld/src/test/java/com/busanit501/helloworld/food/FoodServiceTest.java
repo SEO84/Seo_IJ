@@ -33,14 +33,14 @@ public class FoodServiceTest {
         foodService.register(foodDTO);
     }
 
-//    // 전체 조회
-//    @Test
-//    public void testSelectAll() throws SQLException {
-//         List<TodoDTO> dtoList = todoService.listAll();
-//        for (TodoDTO todoDto:dtoList) {
-//            log.info(todoDto);
-//        }
-//    }
+    // 전체 조회
+    @Test
+    public void testSelectAll() throws SQLException {
+         List<FoodDTO> dtoList = foodService.listAll();
+        for (FoodDTO foodDTO:dtoList) {
+            log.info(foodDTO);
+        }
+    }
 //
 //    // 하나조회, 상세보기.
 //    @Test

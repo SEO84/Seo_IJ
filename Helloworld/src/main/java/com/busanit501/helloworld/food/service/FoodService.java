@@ -3,11 +3,15 @@ package com.busanit501.helloworld.food.service;
 import com.busanit501.helloworld.food.dao.FoodDAO;
 import com.busanit501.helloworld.food.dto.FoodDTO;
 import com.busanit501.helloworld.food.vo.FoodVO;
+import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.util.MapperUtil;
+import com.busanit501.helloworld.jdbcex.vo.TodoVO;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 //열거형 상수들,
@@ -23,6 +27,7 @@ public enum FoodService {
         foodDAO = new FoodDAO();
         modelMapper = MapperUtil.INSTANCE.get();
     }
+
     //1
     // register
     public void register(FoodDTO foodDTO) throws SQLException {
@@ -30,6 +35,16 @@ public enum FoodService {
         log.info("foodVO : " + foodVO);
         foodDAO.insert(foodVO);
     } // register
+
+    //2
+    // 전체 조회
+    public List<FoodDTO> listAll() throws SQLException {
+        List<FoodVO> voList = foodDAO.selectAll();
+        log.info("voList : " + voList);
+        List<FoodDTO> dtoList = voList.stream().map(vo -> modelMapper.map(vo, FoodDTO.class))
+                .collect(Collectors.toList());
+        return dtoList;
+    }
 
 }
 

@@ -1,5 +1,6 @@
 package com.busanit501.helloworld.food.controller;
 
+import com.busanit501.helloworld.food.dto.FoodDTO;
 import com.busanit501.helloworld.food.service.FoodService;
 import com.busanit501.helloworld.jdbcex.dto.TodoDTO;
 import com.busanit501.helloworld.jdbcex.service.TodoService;
@@ -33,23 +34,20 @@ public class FoodRegController extends HttpServlet {
     // 화면에서 데이터 전달받고, -> DTO 담아서, -> 서비스로 전달.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // PRG 패턴,
-        // POST 처리 후, Redirect , Get 호출,
-        // 무한 post 방지 효과, 화면 전환 효과.
-        // 임시로 담을  DTO 인스턴스 필요함.
-        TodoDTO todoDTO = TodoDTO.builder()
+
+        FoodDTO foodDTO = FoodDTO.builder()
                 .title(request.getParameter("title"))
                 .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
                 .build();
         // Controller -> Service
         try {
-            todoService.register(todoDTO);
+            foodService.register(foodDTO);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         System.out.println("doPost : 글쓰기 처리하는 로직, 디비 연결 전, 리스트로 이동함");
-        response.sendRedirect("/todo/list2");
+        response.sendRedirect("/food/list");
 
     }
 }

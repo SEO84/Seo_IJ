@@ -2,11 +2,13 @@ package com.busanit501.helloworld.food;
 
 import com.busanit501.helloworld.food.dao.FoodDAO;
 import com.busanit501.helloworld.food.vo.FoodVO;
+import com.busanit501.helloworld.jdbcex.vo.TodoVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class FoodDAOTest {
@@ -18,16 +20,6 @@ public class FoodDAOTest {
         foodDAO = new FoodDAO();
     }
 
-    @Test
-    public void getTime() {
-        System.out.println("sql 전달 후, 시간 조회 확인용: " + foodDAO.getTime());
-    }
-
-    @Test
-    public void getTime2() throws SQLException {
-        System.out.println("sql 전달 후, " +
-                "시간 조회 확인용: 자동 반납 @Cleanup 확인 " + foodDAO.getTime2());
-    }
 
     @Test
     public void insetTest() throws Exception {
@@ -38,6 +30,14 @@ public class FoodDAOTest {
                 .build();
 
         foodDAO.insert(foodVO);
-
     }
+
+    //2, 전체 목록 조회 테스트
+    @Test
+    public void testList() throws SQLException {
+        List<FoodVO> list = foodDAO.selectAll();
+        list.forEach(vo -> System.out.println(vo));
+    }
+
+
 }
