@@ -59,9 +59,10 @@ public class TodoUpdateController extends HttpServlet {
                 .dueDate(LocalDate.parse(request.getParameter("dueDate"),DATE_TIME_FORMATTER))
                 .finished(checkFinished)
                 .build();
+        log.info("todoDTO 수정된 내용: " + todoDTO);
         // Controller -> Service
         try {
-            todoService.register(todoDTO);
+            todoService.update(todoDTO);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
