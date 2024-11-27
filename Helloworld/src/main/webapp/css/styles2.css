@@ -1,0 +1,105 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #1a1a1a; /* Dark background */
+    color: #f0f0f0; /* Light text color for contrast */
+    padding: 20px;
+}
+
+/* Container for content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #222; /* Slightly lighter dark background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #fff; /* White color for header */
+}
+
+/* Member Detail Section */
+.member-detail {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+input[type="text"], input[type="date"], input[type="checkbox"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background-color: #444;
+    color: #f0f0f0;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+/* Style for checkboxes */
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+a:hover {
+    background-color: #9fe613;
+}
+
+.btn-edit {
+    background-color: #fa7b35; /* Orange for Edit/Delete */
+    color: white;
+}
+
+.btn-back {
+    background-color: #f4b400; /* Yellow for Back */
+    color: white;
+}
+
+a:disabled {
+    background-color: #888; /* Disabled buttons */
+    cursor: not-allowed;
+}

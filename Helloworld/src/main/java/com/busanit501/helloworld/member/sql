@@ -1,0 +1,20 @@
+CREATE TABLE tbl_member (
+                            mno BIGINT AUTO_INCREMENT PRIMARY KEY,
+                            name VARCHAR(100) NOT NULL,
+                            email VARCHAR(150) NOT NULL,
+                            birthDate DATE NOT NULL,
+                            active BOOLEAN NOT NULL
+);
+
+INSERT INTO tbl_member (name, email, birthDate, active)
+VALUES
+    ('김민준', 'minjun.kim@example.com', '1985-02-15', TRUE),
+    ('이수진', 'sujin.lee@example.com', '1990-11-20', TRUE),
+    ('박지훈', 'jihun.park@example.com', '1978-08-05', FALSE),
+    ('정혜진', 'hyejin.jung@example.com', '1995-03-25', TRUE),
+    ('최영호', 'youngho.choi@example.com', '1982-07-18', TRUE),
+    ('한지영', 'jiyeong.han@example.com', '1992-12-01', FALSE),
+    ('오준석', 'junseok.oh@example.com', '1980-05-10', TRUE),
+    ('김하늘', 'haneul.kim@example.com', '1988-09-12', TRUE),
+    ('조민경', 'minkyung.jo@example.com', '1993-01-30', FALSE),
+    ('이수영', 'sooyeong.lee@example.com', '1987-04-22', TRUE);
