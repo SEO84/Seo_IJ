@@ -96,6 +96,19 @@ public enum TodoService {
 
     }
 
+    //4 수정 기능
+    public void update(TodoDTO todoDTO) throws SQLException {
+        // 화면에서 넘겨 받은 데이터는 TodoDTO 타입 박스에 담겨서 오고,
+        // DAO 계층에서 박스의 타입 TodoVO 사용하니, 변환 작업 필요함.
+        // 항상 데이터가 전달 유무 확인.
+        log.info("todoDTO : " + todoDTO);
+         TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+         todoDAO.updateOne(todoVO);
+
+    }
+
+    //5 삭제 기능.
+
 
 }
 

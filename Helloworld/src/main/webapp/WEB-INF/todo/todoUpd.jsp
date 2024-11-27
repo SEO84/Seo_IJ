@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>jdbcex 작업 중. tno 번호로 하나 조회하는 화면, 상세보기와 같은 역할. </h1>
+    <h1>jdbcex 작업 중. tno 번호로 수정화면 역할. </h1>
     <div>
         <input type="text" name="tno" value="${dto.tno}" readonly>
     </div>
