@@ -1,0 +1,200 @@
+타임리프 기초
+스프링에서 공식적으로 사용하는 프론트 화면 그리기 도구.
+
+라이브러리 도구 설치.
+build.gradle 파일에서 설치
+   implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
+타임림프를 사용시, 기본 모양
+태그 내부 기준.
+th:키워드 = ""
+
+
+기본 설정.
+1. 사용법, 태그 안에서 사용하는 방법
+<html lang="ko" xmlns:th="www.thymeleaf.org">
+
+2. 특정 타임리프 블록 안에서 사용하기.
+<th:block>
+ 타임리프 문법 사용하기.
+</block>
+
+
+1
+출력
+
+기본문법
+th:text="${서버에서 전달한 변수명}"
+
+<h1>타임리프 출력하는 방식 2가지
+  1. 인라인으로 출력하는 방법 </h1>
+  <h1 th:text="${list}"></h1>
+<h1>2. 태그 밖에서 출력하는 방법.</h1>
+
+기본문법
+서버에서 넘어온 변수를 , 사용시, ${변수명}
+[[${list}]]
+
+<h2>[[${list}]]</h2>
+
+
+2 주석
+시스템에서, 사용하는 ctrl + / , 기본 사용하기.
+<!-- /*   */-->
+
+3 변수 선언
+<th:with = "변수명 ">
+예시)
+선언
+<th:with = "num1 = ${10}, num2 = ${20}">
+사용
+<h3 th:text="${num1 + num2}"> </h3>
+
+<h2>변수 선언4</h2>
+<div th:with = "num1 = 10, num2 = 20">
+  <h2>변수 사용4</h2>
+  <h3 th:text="${num1 + num2}"> </h3>
+</div>
+
+4반복문
+1) 태그 내부에 인라인 방식.
+2) 특정 블로 안에서 사용하는 방식.
+
+<h2>기본문법 : 목록에서 하나씩 꺼내서 반복작업하기.</h2>
+<!--<th:each="변수명 : 목록">-->
+<!--예시)-->
+<ul>
+  <li th:each="str : ${list}" th:text="${str}"></li>
+</ul>
+
+기본문법:
+<ul>
+<th:block th:each="str : ${list}" >
+  <li> [[${str}]] </li>
+</th:block >
+</ul>
+
+5 반복문에서 status  속성 이용해서, 숫자세기하기.
+status.index
+status.odd
+status.even
+
+<!--예시)-->
+<ul>
+  <li th:each="str , status: ${list}" >
+[[${status.index}]]  --[[${str}]]
+  </li>
+</ul>
+
+6
+조건문,
+th:if, th:unless, th:switch
+
+<!--예시)-->
+<ul>
+  <li th:each="str , status: ${list}" >
+    <span th:if="${status.odd}"> 홀수  [[${str}]]</span>
+    <span th:unless="${status.odd}"> 짝수  [[${str}]]</span>
+  </li>
+</ul>
+
+삼항 연산자 이용해서, 홀수, 짝수 출력 해보기.
+ <ul>
+          <li th:each="str , status: ${list}" >
+              <span th:text="${status.odd} ? '홀수---'+${str} : '짝수---'+${str}"> </span>
+
+          </li>
+      </ul>
+
+ th:switch
+
+ <ul>
+   <li th:each="str , status: ${list}" >
+    <th:block th:switch="${status.index % 3}">
+      <span th:case="0"> index:0  [[${str}]]</span>
+      <span th:case="1"> index:1  [[${str}]]</span>
+      <span th:case="2"> index:2  [[${str}]]</span>
+    </th:block>
+   </li>
+ </ul>
+
+
+
+ 7 타임리프로 링크 처리
+ 기본문법
+ <th:href ="@{이동할 경로}">
+ 예시)
+ <a th:href="@{/hello}">연습용 /hello 가기 </a>
+
+ 8
+ 링크의 쿼리 스트링 처리
+ 기본문법
+ <th:href = "@{/hello(키='값',키2='값2',...)}">연습용 /hello 가기 쿼리스트링
+ 예시)
+ 현재에 하나의 키에 대한 하나의 값의 형태로 더 많이 이용함.
+ <a th:href="@{/hello(name='이상용',age=30)}">연습용 /hello 가기쿼리스트링 </a>
+
+예시2) 배열로 처리할 경우.
+컴파일러상에 오류가 있지만, 정상 동작을함, 하나의 예시로 확인하고,
+주의사항,
+1) 기본 컴파일러에서, 타임리프 문법에 체크 부분 (경고 부분 안맞음)
+2) <a th:href="@{/hello(types=${ {'이상용1','이상용2'} })"> :정상
+2) <a th:href="@{/hello(types=${{'이상용1','이상용2'}})"> :오류
+<a th:href="@{/hello(types=${ {'이상용1','이상용2'} })">연습용 /hello 가기쿼리스트링 </a>
+======================================================================
+
+서버 -> 화면으로 데이터 전달 하기 연습
+
+<h1>서버에서 모델에 담아서 전달한 데이터를 사용하기</h1>
+
+<div th:text="${list}"></div>
+<div th:text="${list2}"></div>
+<div th:text="${map}"></div>
+<div th:text="${dto}"></div>
+
+타임리프를 자바스크립트 문법으로 사용하는 예제
+자바 스크립트 안에서, 서버에서 넘어온 데이터 사용하는 방법 동일.
+
+<script th:inline="javascript">
+  const list = [[${list}]]
+  const list2 = [[${list2}]]
+  const map = [[${map}]]
+  const dto = [[${dto}]]
+  console.log(list)
+  console.log(list2)
+  console.log(map)
+  console.log(dto)
+
+</script>
+
+
+=========================================================================
+공통의 레이아웃의 기능
+반복적으로 사용하는 레이아웃 부분.
+헤더: 고정
+본문 : 동적
+푸터: 고정
+
+기능을 사용하기 위해서 , 라이브러리 가져오기.
+최시버전 : 3.3 인데, 하위 버전으로 확인.
+// https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
+implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+
+공통 레이아웃(base 레이아웃 만들기)
+
+base.html
+상단에 메타 태그 서버 주소 필요함.
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
+이용하는
+ex3.html  에서 사용하는 방법
+메타 태그 필요하고, 공통의 레이아웃의 경로를 지정해야함.
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org"
+      layout:decorate="~{layout/base.html}"
+>
+
+
+

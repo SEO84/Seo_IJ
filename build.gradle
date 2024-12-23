@@ -1,0 +1,118 @@
+// 1) QueryDSL 버전 설정
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.busanit501'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot 기본 스타터
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // 개발 시 핫 리로드
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    // DB 드라이버
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+
+    // 테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // 테스트 환경용 Lombok
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // Thymeleaf Layout Dialect (공통 레이아웃 기능)
+    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+
+    // 2) QueryDSL 의존성 (jakarta)
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+
+    // QueryDSL APT 설정
+    annotationProcessor(
+            "jakarta.persistence:jakarta.persistence-api",
+            "jakarta.annotation:jakarta.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta"
+    )
+
+    // ModelMapper (DTO <-> Entity 변환)
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.1'
+
+    // Spring Boot Validation
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.4.0'
+
+    // SpringDoc(OpenAPI) - Swagger UI
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.7.0'
+
+    // Thumbnailator (이미지 축소/변환)
+    implementation group: 'net.coobird', name: 'thumbnailator', version: '0.4.20'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+// -----------------------------------------
+// QueryDSL 설정
+// -----------------------------------------
+
+// Q 클래스가 생성될 폴더
+def generatedPath = file("$buildDir/generated")
+
+// 메인 소스셋에 Q 클래스 폴더 추가
+sourceSets {
+    main {
+        java {
+            srcDirs = ["$projectDir/src/main/java", generatedPath]
+        }
+    }
+}
+
+// QueryDSL 전용 컴파일 태스크 생성
+task compileQuerydsl(type: JavaCompile) {
+    // 소스 경로 (주로 엔티티가 있는 곳)
+    source = sourceSets.main.java
+    classpath = sourceSets.main.compileClasspath
+    // annotationProcessor 경로 지정
+    options.annotationProcessorPath = configurations.annotationProcessor
+    // 생성될 Q 클래스 출력 경로
+    destinationDirectory = generatedPath
+}
+
+// compileJava가 실행되기 전, compileQuerydsl 먼저 실행
+compileJava.dependsOn(compileQuerydsl)
+
+// -----------------------------------------
+// 매 빌드 시 무조건 전체 clean을 원할 경우(권장 X):
+// compileJava.dependsOn('clean')
+// -----------------------------------------

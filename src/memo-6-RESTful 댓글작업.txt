@@ -1,0 +1,98 @@
+Rest 형식으로 댓글 작업.
+
+- URL 기획, 데이터 포맷 결정.
+- 컨트롤러 JSON 처리
+- 동작 확인
+- 자바스크립트 이용해서 처리, axios, (비동기처리를, 마치 동기화 하듯이
+문법이 쉽게 구현할 예정.)
+
+
+api 명세서 보기.
+1)
+/replies : post, (피카추)
+특정 게시글의 댓글 추가,
+반환 : 만들어진 댓글의 번호, rno
+2)
+/replies/list/:bno : get,
+특정 게시글(bno)의 댓글 목록,
+반환 : PageResponseDTO, JSON 으로 처리 할 예정.
+
+3)
+/replies/:rno : put, 수정, (update)
+댓글 수정.
+반환 : 수정된 댓글의 번호 rno
+
+4)
+/replies/:rno : delete, 삭제, (delete)
+댓글 삭제.
+반환 : 삭제된 댓글의 번호 rno
+
+5)
+/replies/:rno : get, 하나의 댓글 조회
+댓글 하나 조회.
+반환 : 조회된 댓글의 데이터
+댓글 객체를 JSON으로 반환
+
+
+==================================================
+
+댓글 쓰기 작업 확인,
+더미 데이터로 응답하고, ResponseEntity 이용해서, 데이터와 http 상태 코드를
+같이 전달 중.
+확인, 1) Swagger UI 2) Post Man 같이 확인중.
+
+문제점,
+REST 방식은 Ajax 처럼 눈에 보이지 않는 방식,
+왜? 데이터 만 전달하니,
+확인하는 부분이 어려움.
+유효성 체크를 위해서, 특정의 도구를 설치.
+
+@Valid @RestControllerAdvice 이용해보기.
+
+화면이 없어서, 해당 데이터가 잘 전달 되었는지 확인 어려움.
+그래서, @Valid
+
+순서1,
+잘못된 데이터를 보냄. ex)
+JSON 의 모양, { "키" : "값" 의 구조}
+{
+// 아무값도 없이
+    "bno" : null
+}
+순서2
+레스트 컨트롤러가 먼저 반응, 파라미터 @Valid 설정에 의해서,
+ReplyDTO , 예) bno, @NotNull
+예외가 발생함.
+
+순서3,
+레스트 컨트롤러 클래스 예외를 던져요.
+예외 발생시키기
+ throw new BindException(bindingResult);
+
+순서4,
+RestControllerAdvice, 설정.  BindException 을 처리하는 설정.
+순서3에서 보낸, bindingResult 을 받기.
+
+순서5,
+RestControllerAdvice에서 받아서 처리를 합니다.
+
+ @ExceptionHandler(BindException.class)
+
+     // BindException e = bindingResult;
+
+순서6,
+에러 정보가 담은 errorMap과
+    +
+http 상태 코드 400
+-> 요청자(스웨거, 포스트맨)에게 전달, 400, 에러 종류
+
+응답 예시, 400 bad request
+{
+    "replyText": "NotEmpty",
+    "bno": "NotNull",
+    "replyer": "NotEmpty"
+}
+
+
+
+

@@ -1,0 +1,39 @@
+파일 업로드, 스프링 부트에서 도구가 탑재 되어서,
+application.properties 에서 관련 설정만 하면됨.
+예)
+#파일 업로드 관련 설정.
+# 관리자가 관리하는 상품, 여행지, 카페메뉴, 동물사진, static 하위에 이미지 폴더
+spring.servlet.multipart.enabled=true
+# 프로젝트시, 사용자가 업로드한 경로
+spring.servlet.multipart.location=c:\\upload\\springTest
+spring.servlet.multipart.max-request-size=100MB
+spring.servlet.multipart.max-file-size=100MB
+
+2) 실제 C 드라이브에 폴더 만들기.
+
+3) 스웨거에서 멀티파트 타입으로 파일 업로드 하는 UI 파일 선택 부분이
+보이지 않는 오류가 있어서 -> 포스트 맨으로 교체.
+
+4) 포스트맨에서.
+이미지, 파일을 업로드시,
+body -> form-date -> key : file(or files) -> 값 : text -> file 변경해서 선택하기.
+
+5) 파일명 이름 중복 안하기 정책.
+UUID -> 16자리 랜덤한 문자열을 생성해서,
+업로드 파일명 중복 방지.
+UUID(16자리)+"_"+파일명
+
+6)썸네일, 손톱 크기 만큼 비유.
+작은 이미지로 변환하고,
+목록에서는 썸네일 이미지 사용하고,
+상세화면에서는 원본 이미지 이용하기.
+도구 설치.
+
+7) 이미지 처리 개요.
+- 물리 저장소(로컬) -> aws , bucket
+- 업로드 이미지 경로 : c:\\upload\\springTest
+
+- 데이터베이스에는 이미지 파일명이 저장.
+
+, 이미지 파일명만 알고 있으면, 그 이름으로 서버에 호출해서 이미지 다운로드
+화면에 출력하기.

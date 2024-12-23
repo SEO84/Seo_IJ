@@ -1,0 +1,120 @@
+1차 웹 프로젝트 구조,
+1) 프론트(타임리프) + 백엔드(스프링부트,jpa 또는 마이바티스)+ 마리아디비(또는 오라클)
+2) MVC 패턴 + 일부 기능(RESTful Controller)
+
+
+현재까지,
+서버가 한번에
+1)화면도 그리고,
+2)데이터도 전달.
+Controller 표현.
+
+이후로, 데이터 양이 많아지고, 서버가 업무 과중.
+분리함.
+1) 데이터만 전달.
+
+화면 그려주는 기능 -> 프레임워크(Vue.js), 라이브러리(React), 모바일
+
+화면이 존재,
+기존에 API 명세서
+예) /board/list, get
+예) /board/register, get,post
+예) /board/read, get
+예) /board/udpate, get, post -> put
+예) /board/delete, post -> delete
+
+초반에, 주로 사용했던,
+get, post 2가지 형식을
+연장해서
+get, post, put, delete, patch
+
+화면이 없네...!!!
+변경 API 명세서
+/board/list
+/board/1 : get,post,put,delete,patch
+예)
+조회, 1번 게시글 조회
+/board/1 : get
+1번 게시글 작성
+/board/1 : post
+
+1번 게시글 수정
+/board/1 : put
+
+1번 게시글 삭제
+/board/1 : delete
+
+-------------------------------------------------
+필요한 도구
+// 스프링에 특화
+1) Swagger UI (RestController 어노테이션을 발견,자동탐지, UI 그려줘요.)
+
+설치 방법,
+1)
+// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+이슈가 있어서, 버전 변경 2.7.0
+implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.7.0'
+이슈 발생시,
+방법)
+1) 그래들, 빌드 -> 클린,
+2)other -> 컴파일 자바 클릭 ,
+3) 서버 재시작 수동하기
+
+2) 설정 클래스
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("레스트 API 테스트")
+                        .description("Rest 활용해서 댓글도 구현해보기")
+                        .version("1.0.0")
+                );
+    }
+
+}
+
+3) @RestController 클래스에서, 태그를 달아서 식별하기.
+
+4) 설정 클래스 추가 2
+ @Configuration
+   @EnableWebMvc
+   public class CustomServletConfig {
+   }
+
+5) 확인
+http://localhost:8080/swagger-ui/index.html
+
+
+6) 기존 /board/list, css 파일 못읽는 증상이 있어서
+수정하는 코드.
+
+// 특정 프레이워크 종속 되지 않아요. 예) 스프링, 앱, 프레임워크 등...
+2) PostMan ()
+회원가입 (구글계정) - 로그인 -> 워크스페이스 만들기 -> 컬렉션 폴더 만들기
+-> API testing -> 샘플테스트 -> 주소 입력창에서
+http://localhost:8080/hiRest, 1차 문제점 발생.
+웹브라우저, 로컬 인식을 못함. 그래서, 로컬 버전의 데스크톱 버전을 다운로드 .
+
+
+----------------------------------------------------------
+
+Ajax, Rest 방식 기초
+- Ajax(Asynchronous JavaScript And XML), 웹 개발에서 비동기 통신으로
+데이터를 주고 받을 때 많이 사용하는 방식.
+
+- 데이터만 전달.
+- 웹 개발 구조가 많이 변경이 되었음.
+- 서버사이드렌더링 SSR, -> 클라이언트 렌더링 , 데이터가 규모가 빅데이터로 변경 되어서.
+- 백엔드에서, 웹에서, 앱에서 이용이 가능하게 만드는게 트렌드.
+- 데이터를 전달하는 형식, 문자열 형태로 전달을 많이(JSON) ,
+이유, 특정 프레임워크 환경에 종속되지 않아서.
+
+JSON(JavaScript Object Notation),
+구조가, 자바의 맵과 유사하고, 키의 타입이 문자열 타입이다. 큰 차이점,
+기존의 자바스크립트의 객체구조와 다른점.
+
+예) 부트의 자바에서, DTO 클래스 전달 -> JSON 타입의 문자열 형태로 변환을
+해주는 도구가 있음. (Jackson , 컨버터 역할),
